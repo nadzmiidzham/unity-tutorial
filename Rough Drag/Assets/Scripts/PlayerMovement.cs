@@ -3,6 +3,7 @@
 public class PlayerMovement : MonoBehaviour
 {
     public Rigidbody rb;
+    public GameManager gameManager;
     public float forwardForce = 2000f;
     public float sidewayForce = 500f;
 
@@ -17,6 +18,11 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKey("a"))
         {
             rb.AddForce(-sidewayForce * Time.deltaTime, 0, 0, ForceMode.VelocityChange);
+        }
+
+        if(rb.position.y < -1f)
+        {
+            FindObjectOfType<GameManager>().EndGame();
         }
     }
 }
